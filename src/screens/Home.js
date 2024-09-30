@@ -10,6 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {openDatabase} from 'react-native-sqlite-storage';
+import { ImagePath } from '../images';
 let db = openDatabase({name: 'UserDatabase.db'});
 const Home = () => {
   const isFocused = useIsFocused();
@@ -79,7 +80,7 @@ const Home = () => {
                     });
                   }}>
                   <Image
-                    source={require('../images/edit.png')}
+                    source={ImagePath.edit}
                     style={styles.icons}
                   />
                 </TouchableOpacity>
@@ -88,7 +89,7 @@ const Home = () => {
                     deleteUser(item.user_id);
                   }}>
                   <Image
-                    source={require('../images/delete.png')}
+                    source={ImagePath.delete}
                     style={styles.icons}
                   />
                 </TouchableOpacity>

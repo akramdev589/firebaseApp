@@ -9,6 +9,7 @@ import {
   import React, {useState} from 'react';
   import auth from '@react-native-firebase/auth';
   import { useNavigation } from '@react-navigation/native';
+  import firestore from '@react-native-firebase/firestore';
   const FirebaseSignUp = () => {
       const navigation = useNavigation()
     const [email, setemail] = useState('');
@@ -24,6 +25,19 @@ import {
             email,
             password,
           );
+          const user = res.user;
+          // Store user information in Firestore
+          try{
+            await firestore().collection('users').doc(user.uid).set({
+                uid: user.uid,
+                email: user.email,
+                createdAt: firestore.FieldValue.serverTimestamp(),
+              });
+          } catch (error) {
+              Alert.alert(error);
+            
+          }
+          console.log('User signed up and added to Firestore!');
           Alert.alert('User account created & please login' + JSON.stringify(res));
           navigation.goBack();
           console.log('User account created & signed in!');

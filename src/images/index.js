@@ -4,5 +4,7 @@ export const ImagePath ={
     contactForm : require('./contact-mail.png'),
     dashbord : require('./dashboard-control.png'),
     signUpList : require('./list.png'),
+    edit:require('./edit.png'),
+   delete:require('./delete.png')
 
 }
